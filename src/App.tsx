@@ -6,7 +6,7 @@ import {
     Redirect
 } from "react-router-dom";
 import styled from "styled-components";
-import Nav from "./components/NavWrapper";
+import Nav from "./components/Nav";
 
 const Wrapper = styled.div`
   border: 1px solid red;

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import React, {useState} from "react";
-import {Simulate} from "react-dom/test-utils";
-import mouseUp = Simulate.mouseUp;
 
 const TagWrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;

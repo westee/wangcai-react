@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React, {useState} from "react";
-import useTags from "../../useTags";
 
 const TagWrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;

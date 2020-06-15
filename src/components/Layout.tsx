@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Main = styled.main`
     flex-grow: 1;
     overflow: auto;
-`
+`;
 
 const Layout = (props:any) => {
     return (

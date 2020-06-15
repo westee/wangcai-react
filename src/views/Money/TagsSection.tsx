@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
+import useTags from "../../useTags";
 
 const TagWrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;
@@ -20,27 +21,27 @@ const TagWrapper = styled.section`
   }
 `;
 type Props = {
-    value: string[];
-    onChange: (e: string[])=>void;
+    value: number[];
+    onChange: (e: number[])=>void;
 }
 const TagsSection: React.FC<Props> = (props) => {
-    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-    // const {tags, setTags} = useTags();
+    // const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
+    const {tags, setTags} = useTags();
 
-    const selectedTags = props.value;
+    const selectedTagIds = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('请输入新的标签名');
         if (tagName !== null) {
-            setTags([...tags, tagName])
+            setTags([...tags, { id: Math.random(),name:tagName}])
         }
     };
 
-    const onToggleTag = (tag: string) => {
-        const index = selectedTags.indexOf(tag);
+    const onToggleTag = (tagId: number) => {
+        const index = selectedTagIds.indexOf(tagId);
         if (index >= 0) {
-            props.onChange(selectedTags.filter(t => t !== tag));
+            props.onChange(selectedTagIds.filter(t => t !== tagId));
         } else {
-            props.onChange([...selectedTags, tag]);
+            props.onChange([...selectedTagIds, tagId]);
         }
     };
 
@@ -48,9 +49,9 @@ const TagsSection: React.FC<Props> = (props) => {
         <TagWrapper>
             <ol>
                 {tags.map(tag =>
-                    <li key={tag} onClick={() => {
-                        onToggleTag(tag)
-                    }} className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}>{tag}</li>
+                    <li key={tag.id} onClick={() => {
+                        onToggleTag(tag.id)
+                    }} className={selectedTagIds.indexOf(tag.id) >= 0 ? 'selected' : ''}>{tag.name}</li>
                 )}
             </ol>
             <button onClick={onAddTag}>新增标签</button>

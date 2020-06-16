@@ -23,7 +23,7 @@ const TagWrapper = styled.section`
 `;
 type Props = {
     value: number[];
-    onChange: (e: number[])=>void;
+    onChange: (e: number[]) => void;
 }
 const TagsSection: React.FC<Props> = (props) => {
     // const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
@@ -33,7 +33,7 @@ const TagsSection: React.FC<Props> = (props) => {
     const onAddTag = () => {
         const tagName = window.prompt('请输入新的标签名');
         if (tagName !== null) {
-            setTags([...tags, { id: createId(),name:tagName}])
+            setTags([...tags, {id: createId(), name: tagName}])
         }
     };
 

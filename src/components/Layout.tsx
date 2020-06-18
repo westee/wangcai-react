@@ -22,6 +22,6 @@ const Layout = (props:any) => {
             <Nav/>
         </Wrapper>
     )
-}
+};
 
 export default Layout;

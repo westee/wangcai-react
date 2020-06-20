@@ -5,7 +5,7 @@ let importFolder = (requireContext: __WebpackModuleApi.RequireContext)=>requireC
 try {importFolder(require.context('icons', true,/\.svg$/ ))} catch (err) {console.log(err)}
 
 type Props = {
-    name: String
+    name?: String
 }
 
 const Svg = styled.svg`
@@ -16,7 +16,7 @@ const Svg = styled.svg`
 const Icon = (props: Props) => {
     return (
         <Svg className={'icon'}>
-            <use xlinkHref={'#' + props.name}></use>
+            {props.name && <use xlinkHref={'#' + props.name} />}
         </Svg>
     );
 };

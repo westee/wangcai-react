@@ -30,9 +30,7 @@ function Money() {
 
     return (
         <MyLayout>
-            {selected.tagIds.join(',')}
             <hr/>
-            {selected.note}
             <TagsSection value={selected.tagIds}
                          onChange={(tagIds) => onChange({tagIds})}
             />

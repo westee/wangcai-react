@@ -21,16 +21,21 @@ const useTags = () => {
         return result;
     };
     const updateTag = (id: number, obj: {name: string}) => {
-        console.log(id)
-        console.log(obj.name)
         const index = findTagIndex(id);
         const tagsClone = JSON.parse(JSON.stringify(tags));
         tagsClone.splice(index, 1, {id, name: obj.name});
         setTags(tagsClone);
 
     };
+    const deleteTag = (id: number) => {
+        const index = findTagIndex(id);
+        const tagsClone = JSON.parse(JSON.stringify(tags));
+        tagsClone.splice(index, 1);
+        setTags(tagsClone);
 
-    return {tags, setTags, findTag, findTagIndex, updateTag};
+    };
+
+    return {tags, setTags, findTag, findTagIndex, updateTag, deleteTag};
 };
 
 export default useTags;

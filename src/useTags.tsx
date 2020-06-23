@@ -21,7 +21,7 @@ const useTags = () => {
         return result;
     };
     const updateTag = (id: number, {name}: {name: string}) => {
-        setTags(tags.map(tag => tag.id === id ? {id, name: name} :tag));重构：更优雅的更新与删除
+        setTags(tags.map(tag => tag.id === id ? {id, name: name} :tag));
 
     };
     const deleteTag = (id: number) => {

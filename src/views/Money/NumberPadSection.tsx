@@ -3,20 +3,24 @@ import Wrapper from "./NumberPadSection/Wrapper";
 import generateOutput from "./NumberPadSection/generateOutput";
 
 type Props = {
-    value: number;
+    value: string;
     onChange: (value: number) => void;
     onOk?: ()=>void;
 }
 
 const NumberPadSection: React.FC<Props> = (props) => {
-    const [output, _setOutput] = useState(props.value.toString());
+    const [output, _setOutput] = useState(props.value);
     const setOutput = (output: string) => {
+        let newOutput: string;
         if (output.length > 16) {
-            output = output.slice(0, 16);
+            newOutput = output.slice(0, 16);
         } else if (output.length === 0) {
-            output = '0';
+            newOutput = '0';
+        } else {
+            newOutput = output
         }
         _setOutput(output);
+        props.onChange(parseFloat(newOutput));
     };
 
     const onClickButtonWrapper = (e: React.MouseEvent) => {
@@ -30,7 +34,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
             return;
         }
 
-        if ('1234567890'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {
+        if ('1234567890.'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {
             setOutput(generateOutput(text, output));
         }
     };

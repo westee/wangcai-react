@@ -56,7 +56,7 @@ function Money() {
             <CategorySection value={selected.category}
                              onChange={(category) => onChange({category})}
             />
-            <NumberPadSection value={selected.amount}
+            <NumberPadSection value={selected.amount.toString()}
                               onChange={(amount) => onChange({amount})}
                               onOk={submit}
             />

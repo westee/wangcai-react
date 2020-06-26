@@ -11,13 +11,13 @@ type Records = {
 type newRecords = Omit<Records, 'createdAt'>
 
 const useRecords = () => {
-    const [records, setRecords] = useState();
+    const [records, setRecords] = useState<Records[]>([]);
 
     useEffect(() => {
         setRecords(JSON.parse(window.localStorage.getItem('records') || '[]'))
     }, []);
 
-    const addRecord = (newRecord: Records) => {
+    const addRecord = (newRecord: newRecords) => {
         if (newRecord.amount <= 0) {
             alert('请输入金额');
             return false
@@ -32,7 +32,7 @@ const useRecords = () => {
     };
 
     useUpdate(() => {
-        window.localStorage.setItem("recoreds", JSON.stringify(records));
+        window.localStorage.setItem("records", JSON.stringify(records));
     }, [records]);
 
     return {records, addRecord};

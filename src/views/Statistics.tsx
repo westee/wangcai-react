@@ -4,6 +4,25 @@ import CategorySection from "./Money/CategorySection";
 import useRecords from "../hooks/useRecords";
 import useTags from "../hooks/useTags";
 import day from 'dayjs';
+import styled from "styled-components";
+
+const CategoryWrapper = styled.div`
+  background:white;
+`;
+
+const Item = styled.div`
+  display:flex;
+  justify-content: space-between;
+  background: white;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 10px 16px;
+  > .note{
+    margin-right: auto;
+    margin-left: 16px;
+    color: #999;
+  }
+`;
 
 function Statistics() {
     const [category, setCategory] = useState<'-' | '+'>('-');
@@ -12,21 +31,31 @@ function Statistics() {
 
     return (
         <Layout>
-            <CategorySection value={category}
-                             onChange={(value) => setCategory(value)}
-            />
+            <CategoryWrapper>
+                <CategorySection value={category}
+                                 onChange={(value) => setCategory(value)}
+                />
+            </CategoryWrapper>
+
 
             <div>
                 {
                     records.map(r => {
-                        return <div>
-                            {r.tagIds.map(tagId => <span>{findName(tagId) }</span>)}
-                            <hr/>
-                            {r.amount}
-                            <hr/>
-                            {day(r.createdAt).format('YYYY年MM月DD日') }
-                            {/*{r.createdAt}*/}
-                        </div>
+                        return <Item>
+                                <div className="tags">
+                                    {r.tagIds.map(tagId => <span>{findName(tagId)}</span>)}
+                                </div>
+                                {
+                                    r.note && <div className={'note'}>
+                                        {r.note}
+                                    </div>
+                                }
+                                <div className="amount">
+                                    ￥{r.amount}
+                                </div>
+                                {/*{day(r.createdAt).format('YYYY年MM月DD日')}*/}
+                                {/*{r.createdAt}*/}
+                        </Item>
                     })
                 }
             </div>

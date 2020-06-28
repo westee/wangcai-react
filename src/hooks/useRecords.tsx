@@ -19,7 +19,7 @@ const useRecords = () => {
     }, []);
     useUpdate(() => {
         window.localStorage.setItem("records", JSON.stringify(records));
-    }, records);
+    }, [records]);
 
     const addRecord = (newRecord: newRecords) => {
         if (newRecord.amount <= 0) {

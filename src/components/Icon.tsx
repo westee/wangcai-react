@@ -2,8 +2,7 @@ import React, {SVGAttributes} from "react";
 import styled from "styled-components";
 import cs from 'classnames'
 
-let importFolder = (requireContext: __WebpackModuleApi.RequireContext)=>requireContext.keys().forEach(requireContext);
-try {importFolder(require.context('icons', true,/\.svg$/ ))} catch (err) {console.log(err)}
+import sprite from 'icons/sprite.svg';
 
 const Svg = styled.svg`
   width: 18px;
@@ -17,10 +16,10 @@ type Props = {
 const Icon = (props: Props) => {
     const {name, children, className, ...rest} = props;
     return (
-        <Svg className={ cs('icon', className)} {...rest}>
-            {props.name && <use xlinkHref={'#' + props.name} />}
+        <Svg className={cs('icon', className)} {...rest}>
+            {props.name && <use xlinkHref={`${sprite}#${name}`} />}
         </Svg>
     );
 };
 
-export default  Icon;
+export default Icon;

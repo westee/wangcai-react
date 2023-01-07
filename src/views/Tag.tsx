@@ -1,6 +1,6 @@
 import React from "react";
 import useTags from "../hooks/useTags";
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import Layout from "../components/Layout";
 import Icon from "../components/Icon";
 import Button from "../components/Button";
@@ -31,8 +31,8 @@ const InputWrapper = styled.div`
 
 const Tag: React.FC = () => {
     const {findTag, updateTag, deleteTag} = useTags();
-    let {id} = useParams<Params>();
-    const tag = findTag(parseInt(id));
+    let {id} = useParams<Params>()!;
+    const tag = findTag(parseInt("1"));
     const tagContent = (tag: { id: number; name: string }) => (
         <div>
             <InputWrapper>
@@ -52,9 +52,9 @@ const Tag: React.FC = () => {
             <div>{tag.name}</div>
         </div>
     );
-    const history = useHistory();
+    const navigate = useNavigate();
     const onClickBack = ()=>{
-        history.goBack();
+        navigate(-1) //.goBack();
     };
 
     return (

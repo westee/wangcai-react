@@ -33,18 +33,25 @@ const NavWrapper = styled.nav`
       }
     }
 `
+let activeClassName = 'selected'
 let Nav = () => {
     return (
         <NavWrapper>
             <ul>
                 <li>
-                    <NavLink to="/tags" activeClassName={'selected'}><Icon name={'tags'}/>标签页</NavLink>
+                    <NavLink to="/tags"  className={({ isActive }) =>
+                        isActive ? activeClassName : undefined
+                    }><Icon name={'tags'}/>标签页</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/money" activeClassName={'selected'}><Icon name={'money'}/>记账页</NavLink>
+                    <NavLink to="/money"  className={({ isActive }) =>
+                        isActive ? activeClassName : undefined
+                    }><Icon name={'money'}/>记账页</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/statistics" activeClassName={'selected'}><Icon name={'statistics'}/>统计页</NavLink>
+                    <NavLink to="/statistics"  className={({ isActive }) =>
+                        isActive ? activeClassName : undefined
+                    }><Icon name={'statistics'}/>统计页</NavLink>
                 </li>
             </ul>
         </NavWrapper>

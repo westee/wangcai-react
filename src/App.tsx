@@ -1,9 +1,9 @@
 import React from "react";
 import {
     HashRouter as Router,
-    Switch,
+    Routes,
     Route,
-    Redirect
+    Navigate
 } from "react-router-dom";
 import Money from "./views/Money";
 import Tags from "./views/Tags";
@@ -14,24 +14,27 @@ import NoMatch from "./views/NonMatch";
 function App() {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/tags" >
-                    <Tags/>
+            <Routes>
+                <Route  path="/"  element={<Money/>}>
+                    {/*<Tags/>*/}
                 </Route>
-                <Route exact path="/tags/:id" >
-                    <Tag/>
+                <Route  path="/tags" element={<Tags/>}>
+                    {/*<Tags/>*/}
                 </Route>
-                <Route exact path="/money">
-                    <Money/>
+                <Route path="/tags/:id"  element={<Tag/>}>
+                    {/*<Tag/>*/}
                 </Route>
-                <Route exact path="/statistics">
-                    <Statistics/>
+                <Route path="/money" element={<Money/>}>
+                    {/*<Money/>*/}
                 </Route>
-                <Redirect exact from='/' to='/money'/>
-                <Route path="*">
-                    <NoMatch/>
+                <Route path="/statistics" element={<Statistics/>}>
+                    {/*<Statistics/>*/}
                 </Route>
-            </Switch>
+                {/*<Navigate to='/money'/>*/}
+                {/*<Route path="*">*/}
+                {/*    <NoMatch/>*/}
+                {/*</Route>*/}
+            </Routes>
         </Router>
     );
 }
